@@ -1,0 +1,9 @@
+.produitBox {
+    padding: 15px;
+}
+
+img {
+    width: 1OOpx;
+    height: 200px;
+    object-fit: cover;
+}

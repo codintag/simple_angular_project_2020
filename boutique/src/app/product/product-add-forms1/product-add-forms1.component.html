@@ -1,0 +1,42 @@
+<h3 class="container py-4">Ajouter un cours / Classique forms</h3>
+
+<form class="w-50" #productAddForm="ngForm" (ngSubmit)="add(productAddForm)">
+    <div class="form-group">
+        <input type="text" placeholder="Le nom du cours est obligatoire" #name="ngModel" [(ngModel)]="model.name"
+            class="form-control" name="name" id="name" required="required">
+        <div *ngIf="name.invalid&&name.dirty" class="alert alert-danger">Le nom du produit est obligatoire.</div>
+    </div>
+
+    <div class="form-group">
+        <input type="text" placeholder="La description est obligatoire" #description="ngModel"
+            [(ngModel)]="model.description" class="form-control" name="description" id="description"
+            required="required">
+        <div *ngIf="description.invalid&&description.dirty" class="alert alert-danger">La description du produit est
+            obligatoire.</div>
+    </div>
+
+    <div class="form-group">
+        <input type="text" placeholder="Le lien de la photo est obligatoire" #imageUrl="ngModel"
+            [(ngModel)]="model.imageUrl" class="form-control" name="imageUrl" id="imageUrl" required="required">
+        <div *ngIf="imageUrl.invalid&&imageUrl.dirty" class="alert alert-danger">La photo du produit est obligatoire.
+        </div>
+    </div>
+
+    <div class="form-group">
+        <input type="text" placeholder="Le prix est obligatoire" #prix="ngModel" [(ngModel)]="model.prix"
+            class="form-control" name="prix" id="prix" required="required">
+        <div *ngIf="prix.invalid&&prix.dirty" class="alert alert-danger">La prix du produit est obligatoire.
+        </div>
+    </div>
+
+    <div class="form-group">
+        <select class="form-control" #categoryId="ngModel" [(ngModel)]="model.categoryId" required="required"
+            name="categoryId" id="categoryId">
+            <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+        </select>
+        <div *ngIf="categoryId.invalid&&categoryId.touched" class="alert alert-danger">La catégorie est obligatoire.
+        </div>
+    </div>
+
+        <button type="submit" class="btn btn-primary" [disabled]="productAddForm.invalid">Ajouter un cours</button>
+</form>

@@ -1,0 +1,28 @@
+<!-- <h3 *ngIf="produits; else noProduits" class="p-3">{{ title }}</h3> -->
+<app-category></app-category>
+
+<div class="form-group">
+    <input class="form-control w-100" id="produitId" placeholder="Entrez le nom du produit" [(ngModel)]="filterText">
+    <small *ngIf="filterText" id="produitHelp" class="form-text text-muted">
+        Vous avez recherché le mot clé : <strong> {{filterText}} </strong>
+    </small>
+</div>
+
+<div class="row produitBox">
+
+<ng-template #noProduits>
+    <div class="alert alert-primary my-3 mr-5" role="alert">
+        Il n'y a pas de produits dans cette catégorie
+    </div>
+</ng-template>
+
+<div *ngFor="let produit of produits | produitFilter : filterText" class="card" style="width: 18rem;">
+    <img [src]="produit.imageUrl" class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title">{{produit.name | uppercase}} {{ produit.prix | currency:"€" }}</h5>
+        <p class="card-text">{{ produit["description"]}}</p>
+        <a (click)="addToCart(produit)" class="btn btn-primary">Ajouter au panier</a>
+    </div>
+</div>
+
+</div>
